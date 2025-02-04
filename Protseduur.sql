@@ -59,6 +59,21 @@ end;
 --kutse
 EXEC linnaOtsing T;
 
+create procedure rahvaArvuUuendus
+@linnID int,
+@koef decimal(2,1)
+AS
+begin
+select * from linn;
+UPDATE linn SET rahvaArv=rahvaArv*@koef
+Where linnId=@linnID;
+select * from linn;
+end;
+--
+drop procedure rahvaArvuUuendus;
+
+exec rahvaArvuUuendus 1, 1.2
+
 
 --------------------------------------------------------------------------------------------------
 kasutame XAMPP / localhost
