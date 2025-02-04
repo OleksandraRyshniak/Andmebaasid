@@ -299,3 +299,177 @@ VALUES
 ('sugar',
 2,
 0.7)
+ ----------------------------------------------
+Create database protseduurRyshniak;
+use protseduurRyshniak;
+Create table linn(
+linnId int primary key identity(1,1),
+linnNimi varchar(30),
+rahvaArv int);
+select * from linn;
+insert into linn(linnNimi, rahvaArv)
+Values('Tallinn', 60000), ('Tartu', 40000), ('Narva', 30000);
+
+--Protseduuri loomine
+--protseduur(fünksiion), mis lisab uus linn ja kohe näitab tabelis
+
+create procedure lisaLinn
+@lnimi varchar(30),
+@rArv int
+AS
+Begin
+insert into linn(linnNimi, rahvaArv)
+Values(@lnimi, @rArv);
+SELECT * FROM linn;
+end;
+
+--protseduuri kutse
+EXEC lisaLinn @lnimi='Pärnu', @rARv=1234
+--lihtsam
+EXEC lisaLinn 'Rakvere', 7895
+
+-- kirje kustutamine
+DELETE From linn Where linnID=5
+
+--protseduur, mis kustutab linn id järgi
+Create procedure kustutaLinn
+@deleteID int
+AS
+begin
+select * from linn;
+DELETE From linn Where linnID=@deleteID;
+select * from linn;
+end;
+
+--kutse
+EXEC kustutaLinn 4;
+--proceduri kustutamine
+DROP procedure kustutaLinn;
+
+--Protseduur, mis otsib linn esimese tähte järgi
+Create procedure linnaOtsing
+@taht char(1)
+AS
+begin
+SELECT * from linn
+Where linnNimi LIKE @taht + '%';
+--% - kõik teised tähed
+end;
+--kutse
+EXEC linnaOtsing T;
+
+--tabeli uuendamine rahvaarv kasvab 10% võrra
+UPDATE linn SET rahvaArv=rahvaArv*1.1
+select * from linn;
+UPDATE linn SET rahvaArv=rahvaArv*1.1
+Where linnId=7;
+
+create procedure rahvaArvuUuendus
+@linnID int,
+@koef decimal(2,1)
+AS
+begin
+select * from linn;
+UPDATE linn SET rahvaArv=rahvaArv*@koef
+Where linnId=@linnID;
+select * from linn;
+end;
+--
+drop procedure rahvaArvuUuendus;
+
+exec rahvaArvuUuendus 1, 1.2
+
+CREATE TABLE opilane(
+opilaneId int primary key identity(1,1),
+eesnimi varchar(25) not null,
+perenimi varchar(25) not null,
+synniaeg date,
+stip bit,
+keskmine_hinne decimal(2,1)
+)
+select * from opilane;
+
+INSERT INTO opilane(
+eesnimi,
+perenimi,
+synniaeg,
+stip,
+keskmine_hinne)
+VALUES(
+'Nikita',
+'Nikita',
+'2008-12-12',
+1,
+4.5),
+(
+'Nikita2',
+'Nikita2',
+'2008-12-12',
+1,
+4.5),
+(
+'Nikita3',
+'Nikita3',
+'2008-12-12',
+1,
+4.5),
+(
+'Nikita4',
+'Nikita4',
+'2008-12-12',
+1,
+4.5),
+(
+'Nikita5',
+'Nikita5',
+'2008-12-12',
+1,
+4.5);
+
+select * from opilane; 
+
+create procedure lisaOpilane
+@opnimi varchar (25),
+@opperenimi varchar (25),
+@opsynniaeg date,
+@opstip bit,
+@ophinne decimal (2,1)
+AS
+begin
+insert into opilane (eesnimi, perenimi, synniaeg, stip, keskmine_hinne)
+values(@opnimi, @opperenimi, @opsynniaeg, @opstip, @ophinne);
+SELECT * from opilane;
+end;
+exec lisaOpilane 'Nikita10', 'Nikita10', '2000-01-01', 1, 4.6;
+
+create procedure kutstutaopilane
+@deleteId int
+AS
+begin
+DELETE from opilane Where opilaneId=@deleteId;
+select * from opilane;
+end;
+
+exec kutstutaopilane ;
+
+create procedure opilaneOtsing
+@keskmine_hinne decimal (2,1)
+AS
+BEGIN
+Select * from opilane
+Where keskmine_hinne=@keskmine_hinne;
+end;
+exec opilaneOtsing 4.6;
+
+create procedure keskmine_hinneUuendus
+@opilaneID int,
+@koefi decimal(2,1)
+AS
+begin
+select * from opilane;
+UPDATE opilane SET keskmine_hinne=keskmine_hinne*@koefi
+Where opilaneID=@opilaneID;
+select * from opilane;
+end;
+
+exec keskmine_hinneUuendus 3, 1.5;
