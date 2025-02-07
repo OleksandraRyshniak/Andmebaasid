@@ -1,4 +1,4 @@
---SQl salvestatud protseduur - funktsioon, mis käivitab serveris mitu SQL tegevust järjest.
+@--SQl salvestatud protseduur - funktsioon, mis käivitab serveris mitu SQL tegevust järjest.
 Kasutame SQL Server
 
 Create database protseduurRyshniak;
