@@ -16,3 +16,4 @@ päringukeel - язык запросов
 relatsiooni andmebaas - реализационная база данных
 seos - связь
 piirangud - ограничение
+barnch - ветка
