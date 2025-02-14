@@ -1,1 +1,82 @@
+create database retseptiRaamatRyshniak;
+use retseptiRaamatRyshniak;
+create table kasutaja (
+kasutaja_id int primary key identity (1,1),
+eesnimi varchar(50),
+perenimi varchar(50) not null,
+email varchar(150));
+insert into kasutaja(eesnimi, perenimi, email)
+values('Nikita', 'Nikita', 'nikita@tthk.ee'),
+('Mark', 'Mark', 'mark@tthk.ee'),
+('Roman', 'Roman', 'roman@tthk.ee'),
+('Marija', 'Marija', 'marija@tthk.ee'),
+('Nikita', 'Nikita', 'nikita@tthk.ee');
+select * from kasutaja
 
+create table kategooria (
+kategooria_id int primary key identity (1,1),
+kategooria_nimi varchar (50));
+insert into kategooria (kategooria_nimi)
+values('supp'), ('magus'), ('soolane'), ('jook'), ('köögiviljad');
+select * from kategooria
+
+create table toiduaine (
+toiduaine_id int primary key identity (1,1),
+toiduaine_nimi varchar(100));
+insert into toiduaine (toiduaine_nimi)
+values ('munad'), ('juust'), ('piim'), ('õlu'), ('soola');
+
+select * from toiduaine
+
+create table yhik (
+yhik_id int primary key identity (1,1),
+yhik_nimi varchar(100));
+insert into yhik (yhik_nimi)
+values ('ml'), ('g'), ('kg'), ('tl'), ('sl');
+
+select * from yhik
+
+create table retsept (
+retsept_id int primary key identity (1,1),
+retsepti_nimi varchar (100),
+kirjendus varchar(200),
+juhend varchar (500),
+sisestatud_kp date,
+kasutaja_id int,
+foreign key (kasutaja_id) references kasutaja(kasutaja_id),
+kategooria_id int,
+foreign key (kategooria_id) references kategooria(kategooria_id));
+insert into retsept (retsepti_nimi, kirjendus, juhend, sisestatud_kp, kasutaja_id, kategooria_id)
+values('porgandikook', 'väga magus', 'kasuta porgandid', '2025-02-14', 2, 2),
+('pannkoogid', 'väga magus', 'kasuta elektripliit', '2025-02-14', 3, 2),
+('grill', 'nii soola', 'kasuta grillpott', '2025-02-14', 4, 2),
+('supp', 'nii sola', 'kasuta elektripliit', '2025-02-12', 5, 1);
+
+select * from retsept
+select * from yhik
+select * from toiduaine
+
+
+create table koostis(
+koostis_id int primary key identity (1,1),
+kogus int,
+retsept_retsept_id int,
+foreign key (retsept_retsept_id) references retsept(retsept_id),
+toiduaine_id int,
+foreign key (toiduaine_id) references toiduaine(toiduaine_id),
+yhik_id int,
+foreign key (yhik_id) references yhik(yhik_id));
+insert into koostis (kogus, retsept_retsept_id, toiduaine_id, yhik_id)
+values (3, 1, 2, 2), (1, 2, 3, 1), (12, 3, 3, 1), (2, 4, 5, 2), (1, 5, 1, 2);
+
+select * from koostis
+
+create table tehtud (
+tehtud_id int primary key identity (1,1),
+tehtud_kp date,
+retsept_id int,
+foreign key (retsept_id) references retsept(retsept_id));
+insert into tehtud(tehtud_kp, retsept_id)
+values ('2024-02-15', 1), ('2025-01-15', 2), ('2025-02-01', 3), ('2025-02-02', 4), ('2024-01-18', 5);
+
+select * from tehtud
