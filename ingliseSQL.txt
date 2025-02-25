@@ -1,0 +1,37 @@
+Kirjuta oma nimi: Oleksandra
+SQL - Structured query language - структурный язык запросов
+DDL - Data Definition Language - язык определения данных
+DML - Data Manipulation Language - язык управления данными
+Database - andmebaas
+Database management system - andmebaasi haldussüsteem 
+Related tables - seotud tabelid
+Relational database - relatiivne andmebaas
+Relationship - seos 
+ ----------------------------------------------------------
+Primary Key - lisab andmetabelis iga kirje unikaalsus
+Foreign Key - seos teise tabeliga
+One-to-many relationship - üks-mitmele seos
+One-to-one relationship - üks-ühele suhe
+Query - andmebaasi päringud
+Report - aruande
+Form - аndmete kogumine, esitamine või korrastamine.
+Data type /
+varchar - on аndmetüüp muutujapikkusega stringide salvestamiseks andmebaasis.
+char - on andmetüüp, mis kujutab ühte märki
+int - on andmetüüp, täisarvude jaoks
+decimal - on andmetüüp kümnendarvude jaoks 
+text - on andmetüüp, tekstide jaoks
+bit, bool - on andmetüüp, loogiliste probleemide jaoks
+date - on andmetüüp, kuupäeva jaoks
+time - on andmetüüp, aja jaoks
+blob - это тип данных для хранения больших двоичных данных
+--------------------------
+Constraints - Piirangud
+
+NOT NULL - не ноль
+UNIQUE - уникальный
+PRIMARY KEY - первичный ключ
+FOREIGN KEY - вторичный ключ
+CHECK - приверить
+DEFAULT - значение по умолчанию
+CREATE INDEX - создание индекса
