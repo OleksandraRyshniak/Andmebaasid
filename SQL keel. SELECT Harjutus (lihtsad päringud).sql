@@ -90,3 +90,6 @@ where Mark like 'A%';
 select Mark, Aasta
 from autod
 where (Aasta between 1999 and 2005) and Mark like '%a%';
+
+
+LEN - количество символов
