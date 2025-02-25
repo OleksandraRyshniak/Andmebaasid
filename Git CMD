@@ -2,3 +2,8 @@ git checkout oleksandra
 git status
 git add .
 git commit -a -m "create table kn kirjeldatud"
+
+
+>cd desktop
+>c:
+git config --g
