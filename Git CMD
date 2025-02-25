@@ -7,3 +7,17 @@ git commit -a -m "create table kn kirjeldatud"
 >cd desktop
 >c:
 git config --g
+
+>cd desktop
+>cd ..
+>c:
+>git config --global user.name "oleksandraryshniak" -- git süsteemis salvestatakse sinu nimi
+>git config --global user.email "oleksandraryshniak@gmail.com"
+>git config --global --list -- näitab mis GIT salvestas
+>git status
+>git branch
+>git checkout oleksandra
+>git add .
+>git commit -a -m "Nimi on lisatud"
+
+-----------------------------------------
