@@ -69,3 +69,8 @@ WHERE linnID=2;
 select * from linnad;
 select * from logi;
 
+disable trigger linnalisamine on linnad
+insert into linnad(linnanimi, rahvaarv)
+Values('Tartu', 10000);
+select * from linnad;
+select * from logi;
