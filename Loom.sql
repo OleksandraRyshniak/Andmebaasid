@@ -183,8 +183,8 @@ select
 GETDATE(),
 SYSTEM_User,
 'Loom on uuendatud',
-Concat ('vanad andmed: ', d.Id_loomad,' , ', d.Nimi, ' , ', lk1.Klass, ' , ', d.Sunnipaev, ' , ', d.Kala, ' , ', d.Vanus,
-' || uued andmed: ', i.Id_loomad, ' , ', i.Nimi,' , ', lk2.Klass,' , ', i.Sunnipaev, ' , ', i.Kala, ' , ', i.Vanus)
+Concat ('vanad andmed:, d.Nimi, ' , ', lk1.Klass, ' , ', d.Sunnipaev, ' , ', d.Kala, ' , ', d.Vanus,
+' || uued andmed: , i.Nimi,' , ', lk2.Klass,' , ', i.Sunnipaev, ' , ', i.Kala, ' , ', i.Vanus)
     FROM deleted d
     INNER JOIN inserted i ON d.Id_loomad = i.Id_loomad
     INNER JOIN Loomaklass lk1 ON d.Id_loomaklass = lk1.Id_loomaklass
@@ -206,8 +206,8 @@ insert into logi(aeg, kasutaja, toiming, andmed)
 select 
 GETDATE(),
 SYSTEM_USER,
-'linn on lisatud',
-CONCAT('Id: ', i.Id_loomad , ' , ',
+'Loom on lisatud',
+CONCAT(
 'Nimi: ', i.Nimi,  ' , ', 
 'Klass: ', lk.Klass,  ' , ', 
 'Sünnipäev: ', i.Sunnipaev, ' , ', 
@@ -230,8 +230,8 @@ insert into logi(aeg, kasutaja, toiming, andmed)
 select 
 GETDATE(),
 SYSTEM_USER,
-'linn on kustuta',
-CONCAT('Id: ', d.Id_loomad , ' , ',
+'Loom on kustuta',
+CONCAT(
 'Nimi: ', d.Nimi,  ' , ', 
 'Klass: ', lk.Klass,  ' , ', 
 'Sünnipäev: ', d.Sunnipaev, ' , ', 
